@@ -5,38 +5,18 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Homepage from './components/homepage/homepage';
 import UserAccess from './components/useraccess/useraccess';
 import Application from './components/application/application';
+import AuthProvider from './contexts/authContext';
 
 const App = () => {
   return (
     <Router>
-      <div>
-
-      <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/auth/login">Login / Sign Up</Link>
-          </li>
-          <li>
-            <Link to="/app">App</Link>
-          </li>
-        </ul>
-
-        <hr />
-
+      <AuthProvider>
         <Switch>
-          <Route exact path='/'>
-            <Homepage />
-          </Route>
-          <Route path='/auth'>
-            <UserAccess />
-          </Route>
-          <Route path='/dashboard'>
-            <Application />
-          </Route>
+          <Route exact path='/' component={Homepage}/>
+          <Route path='/auth' component={UserAccess}/>
+          <Route path='/dashboard' component={Application}/>
         </Switch>
-      </div>
+      </AuthProvider>
     </Router>
   );
 }

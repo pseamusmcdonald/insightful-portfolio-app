@@ -1,8 +1,16 @@
+import React from 'react'
+import { Link, Route } from 'react-router-dom'
+
+import SignUp from './signUp'
+import Login from './login'
+import Layout from '../../templates/layout'
+
 const UserAccess = () => {
     return (
-        <div>
-            <h1>asd</h1>
-        </div>
+        <Layout>
+            <Route exact path='/auth/login' component={ Login }/>
+            <Route exact path='/auth/sign-up' component={ SignUp }/>
+        </Layout>
     )
 }
 

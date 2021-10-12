@@ -1,6 +1,11 @@
+import React from "react"
 import Layout from "../../templates/layout"
 
+import { useAuth } from "../../contexts/authContext"
+
 const Homepage = () => {
+
+
     return (
         <div>
             <Layout>
