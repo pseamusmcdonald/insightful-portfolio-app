@@ -7,6 +7,227 @@
   pointer-events: none;
 }
 
+/** General Styles **/
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("./fonts/DMSans-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("./fonts/DMSans-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("./fonts/DMSans-Medium.ttf") format("truetype");
+  font-weight: medium;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("./fonts/DMSans-MediumItalic.ttf") format("truetype");
+  font-weight: medium;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("./fonts/DMSans-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("./fonts/DMSans-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+* {
+  font-family: DM Sans;
+}
+
+body {
+  min-height: 100vh;
+}
+
+main {
+  min-height: calc(100vh - (90px + 90px));
+  display: flex;
+}
+
+h1, h2 {
+  letter-spacing: 2px;
+}
+
+a {
+  text-decoration: none;
+  color: #555555;
+}
+
+
+
+/** Homepage Styling **/
+
+
+/** Layout Styling **/
+
+header {
+  width: 90%;
+  max-width: 1500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  height: 90px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90px;
+}
+
+.headerMenu {
+  display: flex;
+  column-gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.headerMenu * {
+  list-style-type: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  color: #1f1f1f;
+}
+
+.drop * {
+  font-size: 1.2rem;
+}
+
+
+#headerLogo > path {
+  fill: #1f1f1f
+}
+
+.hoverDropdownContainer {
+  position: relative;
+}
+
+.hoverDropdown {
+  position: absolute;
+  opacity: 0;
+  top: 2rem;
+  right: 0;
+  background: #f9f9f9;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+}
+
+.hoverDropdownContainer:hover .hoverDropdown {
+  opacity: 1;
+}
+
+.headerMenu.drop {
+  flex-direction: column;
+}
+
+/** Page Styling **/
+
+  /** Dashboard Styling **/
+
+  .accountsDropdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+    /** Authentication Page Styling **/
+
+.authFormWrapper {
+  margin: auto;
+  width: 50%;
+}
+
+.authForm > p {
+  margin-top: 1rem;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  align-items: center;
+}
+
+.authForm > input {
+  width: 50%;
+}
+
+.authSubmitButton {
+  width: fit-content;
+  padding: 1rem 5rem;
+  background: #207ebd;
+  color: #f9f9f9;
+  border: none;
+  margin-top: .5rem;
+} 
+
+/** Icons **/
+
+
+/** CSS Animations **/
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

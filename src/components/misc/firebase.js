@@ -1,7 +1,7 @@
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
+import { initializeApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
 
-const app = firebase.initializeApp({
+const app = initializeApp({
   apiKey: "AIzaSyCrNSP56Co1Pt0qrnPpTY-x4rGzeyy9rng",
   authDomain: "insightful-80425.firebaseapp.com",
   projectId: "insightful-80425",
@@ -11,5 +11,5 @@ const app = firebase.initializeApp({
   measurementId: "G-C2QXWECFLZ"
 });
 
-export const auth = app.auth() 
+export const auth = getAuth(app) 
 export default app

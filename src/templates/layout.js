@@ -1,6 +1,8 @@
 import React from 'react'
-import Header from '../components/misc/header'
 import { useAuth } from '../contexts/authContext'
+
+import Header from '../components/misc/header'
+import Footer from '../components/misc/footer'
 
 const Layout = ({ children }) => {
 
@@ -10,7 +12,7 @@ const Layout = ({ children }) => {
         <React.Fragment>
             <Header currentUser={currentUser}/>
             <main>{children}</main>
-            <h1>footer</h1>
+            <Footer/>
         </React.Fragment>
     )
 }
