@@ -6,6 +6,7 @@ import Search from '../components/application/search'
 import Layout from '../templates/layout'
 
 const Application = () => {
+    
     return (
         <Layout>
             <Route exact path='/app/dashboard' component={Dashboard}/>

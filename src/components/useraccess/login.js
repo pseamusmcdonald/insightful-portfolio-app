@@ -23,7 +23,9 @@ const Login = () => {
         catch {
             setError('Failed to login. Check email and password.')
         }
-        setLoading(false)
+        finally {
+            setLoading(false)
+        }
     }
 
     return (

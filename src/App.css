@@ -65,7 +65,7 @@ main {
 }
 
 h1, h2 {
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
 a {
@@ -73,6 +73,11 @@ a {
   color: #555555;
 }
 
+
+button {
+  background: none;
+  border: none;
+}
 
 
 /** Homepage Styling **/
@@ -127,15 +132,17 @@ footer {
 
 .hoverDropdown {
   position: absolute;
+  display: none;
   opacity: 0;
   top: 2rem;
   right: 0;
   background: #f9f9f9;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+  transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
 }
 
 .hoverDropdownContainer:hover .hoverDropdown {
+  display: block;
   opacity: 1;
 }
 
@@ -151,6 +158,111 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: fit-content;
+  }
+
+  .dashboardContainer {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .dashboardContainer p {
+    font-size: 14px;
+  }
+  
+  .accountOverviewContainer {
+    display: flex;
+    gap: 5rem
+  }
+  
+  .accountOverviewContainer > div {
+    width: 50%;
+  }
+
+  .positionAttributesContainer {
+    display: flex;
+    font-size: 14px;
+    border-bottom: 1px solid;
+  }
+
+  .positionContainer {
+    display: flex;
+    border-top: 1px solid;
+    justify-content: flex-start;
+    align-items: center;
+    padding: .5rem 0;
+  }
+
+  .positionContainer.legend {
+    border: none;
+    padding: 0;
+  }
+
+  .accountOverviewChart {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #chartPeriodSelection {
+    width: fit-content;
+    align-self: flex-end;
+    margin: 0 0 1rem;
+  }
+
+  #positionName {
+    width: 20%;
+  }
+
+  #positionPrice {
+    width: 15%;
+  }
+
+  #positionQuantity {
+    width: 15%;
+  }
+
+  #positionValue {
+    width: 18%
+  }
+
+  #positionProportion {
+    width: 17%;
+  }
+
+  #positionPnL {
+    width: 15%
+  }
+
+  #editPortfolioButton {
+    margin: 1rem 0 0 auto;
+    display: block;
+  }
+
+  #editPositionButton {
+    display: block;
+    margin: 0 0 0 auto;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+
+  #editPositionButton:hover {
+    transform: scale(1.15);
+  }
+
+  .positionEditForm {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .positionEditForm.editor {
+    border-top: 1px solid;
+  }
+
+  .positionEditForm > input {
+    border: none;
+    outline: 1px solid #454545;
+    border-radius: 3px;
+    padding: .2rem 0 .2rem .1rem;
   }
 
 
@@ -204,10 +316,10 @@ footer {
   width: 64px;
   height: 64px;
   margin: 8px;
-  border: 8px solid #fff;
+  border: 8px solid #454545;
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff transparent transparent transparent;
+  border-color: #454545 transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;
@@ -225,6 +337,29 @@ footer {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: -2px;
+  left: 0;
+  background-color: #454545;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 
@@ -256,4 +391,9 @@ footer {
   to {
     transform: rotate(360deg);
   }
+}
+
+#lineChart {
+  height: 100% !important;
+  width: 100% !important;
 }

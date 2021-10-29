@@ -19,7 +19,7 @@ const App = () => {
         <Switch>
           <Route exact path='/' component={Homepage}/>
           <Route path='/auth' component={UserAccess}/>
-          <ProtectedRoute reUrl='/' component={Application} />
+          <ProtectedRoute route ='/app' reUrl='/' component={Application} />
         </Switch>
       </AuthProvider>
     </Router>

@@ -29,7 +29,7 @@ const Header = ({ currentUser }) => {
             <ul className='headerMenu'>
                 {currentUser ?
                     <li><div className='hoverDropdownContainer'>
-                        <Link to='/app/dashboard' style={{padding: '1rem'}}>My Account</Link>
+                        <Link to='/app/dashboard' style={{padding: '0 0 1rem'}}>My Account</Link>
                         <div className='hoverDropdown'>
                             <ul className='headerMenu drop'>
                                 <li><Link to='/app/profile'>Profile</Link></li>
