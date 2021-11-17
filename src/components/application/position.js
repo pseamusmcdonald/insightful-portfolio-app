@@ -13,18 +13,18 @@ const Position = ({position, isEditing, handleDeletePosition, index}) => {
             {!isEditing ?
                 <> 
                 <p id='positionName'>{position.company}</p>
-                <p id='positionPrice'>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(currentPrice)}</p>
-                <p id='positionQuantity'>{new Intl.NumberFormat('en-IN').format(position.shares)}</p>
-                <p id='positionValue'>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(currentValue)}</p>
+                <p id='positionPrice'>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(currentPrice)}</p>
+                <p id='positionQuantity'>{new Intl.NumberFormat('en-US').format(position.shares)}</p>
+                <p id='positionValue'>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(currentValue)}</p>
                 <p id='positionProportion'>{position.proportion}</p>
-                <p id='positionPnL' style={profitLoss > 0 ? {color: 'green'} : {color: 'red'}}>{profitLoss > 0 ? '+' : ''}{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(profitLoss)}</p>
+                <p id='positionPnL' style={profitLoss > 0 ? {color: 'green'} : {color: 'red'}}>{profitLoss > 0 ? '+' : ''}{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(profitLoss)}</p>
                 </>
                 :
                 <>
                 <form className='positionEditForm'>
                     <p style={{width: '30%'}} id='positionName'>{position.company}</p>
-                    <input style={{width: '28%', marginRight: '2%'}} type="number" min="0.00" max="10000.00" step="0.01" placeholder={new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(position.cost)}/>
-                    <input style={{width: '28%', marginRight: '2%'}} type="number" min="0" max="10000" step="1" placeholder={new Intl.NumberFormat('en-IN').format(position.shares)}/>
+                    <input style={{width: '28%', marginRight: '2%'}} type="number" min="0.00" max="10000.00" step="0.01" placeholder={new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(position.cost)}/>
+                    <input style={{width: '28%', marginRight: '2%'}} type="number" min="0" max="10000" step="1" placeholder={new Intl.NumberFormat('en-US').format(position.shares)}/>
                     <button id='editPositionButton' onClick={handleDeletePosition} value={index}>
                         <svg style={{pointerEvents: 'none'}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                             <path fill="none" d="M0 0h24v24H0z"/>

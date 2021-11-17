@@ -6,13 +6,12 @@ Chart.defaults.font.family = 'DM Sans'
 
 const LineChart = ({data, labels}) => {
     
-    
     const chartRef = useRef(null)
 
     useEffect(() => {
 
         const chartCtx = chartRef.current.getContext('2d')
-
+            
         const lineChart = new Chart(chartCtx, {
             type: 'line',
             data: {
@@ -73,9 +72,14 @@ const LineChart = ({data, labels}) => {
             }
         }) 
 
+        return () => {
+            lineChart.destroy()
+        }
+
     })
 
     Chart.register(...registerables)
+
 
     return (
         <canvas id='lineChart' ref={chartRef}/>

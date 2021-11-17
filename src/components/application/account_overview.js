@@ -7,12 +7,13 @@ import AccountDataOverview from './account_data_overview'
 
 const AccountOverview = ({accounts}) => {
 
-    const [ currentAccount, setCurrentAccount ] = useState(accounts[0])
-
     const handleAccountSelection = (event) => {
         setCurrentAccount(event.target.value)
     }
 
+    const handleChartRange = () => {
+
+    }
 
     return (
         <>
@@ -29,14 +30,14 @@ const AccountOverview = ({accounts}) => {
                     <AccountPositions positions={currentAccount.positions}/>
                 </div>
                 <div className='accountOverviewChart'>
-                    <select id='chartPeriodSelection'>
+                    <select id='chartPeriodSelection' onChange={handleChartRange}>
                         <option>1 Day</option>
                         <option>5 Day</option>
                         <option>1 Month</option>
                         <option>1 Year</option>
                         <option>YTD</option>
                     </select>
-                    <LineChart />
+                    <LineChart data={data} labels={labels}/>
                 </div>
             </div>
         </>

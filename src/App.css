@@ -118,9 +118,9 @@ footer {
 }
 
 .drop * {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+  margin: 0rem 2rem 1rem 0rem;
 }
-
 
 #headerLogo > path {
   fill: #1f1f1f
@@ -132,17 +132,18 @@ footer {
 
 .hoverDropdown {
   position: absolute;
-  display: none;
+  visibility: hidden;
   opacity: 0;
   top: 2rem;
   right: 0;
   background: #f9f9f9;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+  transition: opacity .35s ease-in 0s;
+  padding: 2rem 3rem 1rem;
 }
 
 .hoverDropdownContainer:hover .hoverDropdown {
-  display: block;
+  visibility: visible;
   opacity: 1;
 }
 
@@ -179,6 +180,13 @@ footer {
     width: 50%;
   }
 
+  .accountOverviewData {
+    background: #FCFCFC;
+    box-shadow: 0px 5px 25px 5px rgb(0 0 0 / 10%);
+    border-radius: 10px;
+    padding: 2rem 3rem;
+  }
+
   .positionAttributesContainer {
     display: flex;
     font-size: 14px;
@@ -201,6 +209,14 @@ footer {
   .accountOverviewChart {
     display: flex;
     flex-direction: column;
+    background: #FCFCFC;
+    box-shadow: 0px 5px 25px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 2rem 3rem 2rem 2rem;
+  }
+
+  .ais-Hits {
+	  position: absolute;
   }
 
   #chartPeriodSelection {
@@ -249,12 +265,13 @@ footer {
   }
 
   .positionEditForm {
+	position: relative;
     display: flex;
     align-items: center;
     width: 100%;
   }
 
-  .positionEditForm.editor {
+  #positionEditForm {
     border-top: 1px solid;
   }
 
@@ -297,6 +314,11 @@ footer {
   border: none;
   margin-top: .5rem;
 } 
+
+#signOut {
+  display: block;
+  margin: auto;
+}
 
 /** Icons **/
 

@@ -5,6 +5,8 @@ import Position from './position'
 import { useAuth } from '../../contexts/authContext'
 
 import { db } from '../misc/firebase'
+import { functions } from '../misc/firebase'
+import StockSearchBox from '../misc/stock-search-box'
 
 const AccountPositions = ({ currentAccount }) => {
 
@@ -57,6 +59,9 @@ const AccountPositions = ({ currentAccount }) => {
                     return temp
                 })
             })
+
+            var form = event.target
+            form.reset()
     }
     
 
@@ -89,10 +94,10 @@ const AccountPositions = ({ currentAccount }) => {
             ))}
             {isEditing ?
                 <div>
-                    <form className='positionEditForm editor' style={{ padding: '.5rem 0' }} onSubmit={handleAddPosition}>
-                        <input style={{width: '28%', marginRight: '2%'}} name='company' placeholder='Company Name'/>
-                        <input style={{width: '28%', marginRight: '2%'}} name='cost' type="number" min="0.00" max="10000.00" step="0.01" placeholder='Share Cost'/>
-                        <input style={{width: '28%', marginRight: '2%'}} name='shares' type="number" min="0" max="10000" step="1" placeholder='Quantity'/>
+                    <form className='positionEditForm' id='positionEditForm' style={{ padding: '.5rem 0' }} onSubmit={handleAddPosition} autoComplete='off'>
+                        <StockSearchBox />
+                        <input style={{width: '28%', marginRight: '2%'}} name='cost' type="number" min="0.00" max="10000.00" step="0.01" placeholder='Share Cost' required/>
+                        <input style={{width: '28%', marginRight: '2%'}} name='shares' type="number" min="0" max="10000" step="1" placeholder='Quantity' required/>
                         <button type='submit' id='editPositionButton'>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                                 <path fill="none" d="M0 0h24v24H0z"/>
