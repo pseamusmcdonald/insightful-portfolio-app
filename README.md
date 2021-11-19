@@ -6,6 +6,7 @@ Note* The current API limit is 5 calls per minute. Each position load and edit i
 ## Features
 
 ### Portfolio Tool :ledger:
+- Add over 6000 companies (NASDAQ and NYSE)
 - Add/Update/Delete Positions
 - Performance Chart (1DAY/5DAY/1MONTH/1YEAR/YTD)
 - Performance Data
