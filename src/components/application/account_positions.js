@@ -11,9 +11,7 @@ import StockSearchBox from '../misc/stock-search-box'
 const AccountPositions = ({ currentAccount }) => {
 
     const { currentUser } = useAuth()
-
     const [ positions, setPositions ] = useState(currentAccount.positions)
-
     const [ isEditing, setIsEditing ] = useState(false)
 
     const accountRef = doc(db, `users/${currentUser.uid}/accounts`, `${currentAccount.name}`)
@@ -39,7 +37,7 @@ const AccountPositions = ({ currentAccount }) => {
             })
     }
 
-    const handleAddPosition = async event => {
+    const handleAddPosition = async (event) => {
 
         event.preventDefault()
 
@@ -63,7 +61,6 @@ const AccountPositions = ({ currentAccount }) => {
             var form = event.target
             form.reset()
     }
-    
 
     return (
         <div className='accountPositionsOverview'>
@@ -96,8 +93,8 @@ const AccountPositions = ({ currentAccount }) => {
                 <div>
                     <form className='positionEditForm' id='positionEditForm' style={{ padding: '.5rem 0' }} onSubmit={handleAddPosition} autoComplete='off'>
                         <StockSearchBox />
-                        <input style={{width: '28%', marginRight: '2%'}} name='cost' type="number" min="0.00" max="10000.00" step="0.01" placeholder='Share Cost' required/>
-                        <input style={{width: '28%', marginRight: '2%'}} name='shares' type="number" min="0" max="10000" step="1" placeholder='Quantity' required/>
+                        <input name='cost' type="number" min="0.00" max="10000.00" step="0.01" placeholder='Share Cost' required/>
+                        <input name='shares' type="number" min="0" max="10000" step="1" placeholder='Quantity' required/>
                         <button type='submit' id='editPositionButton'>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                                 <path fill="none" d="M0 0h24v24H0z"/>
