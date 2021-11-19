@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { httpsCallable } from '@firebase/functions'
+import { functions } from '../misc/firebase'
 
 const Position = ({position, isEditing, handleDeletePosition, index}) => {
 
-    const currentPrice = 25
+	const getPrice = httpsCallable(functions, 'getStockPrice')
 
-    const currentValue = currentPrice * position.shares
-    const profitLoss = (currentPrice * position.shares) - (position.cost * position.shares)
+	const tickerArray = position.company.split(" ")
+	const tickerPlain = tickerArray[1]
+
+	const [ price, setPrice ] = useState()
+
+	useEffect(async () => {
+		if (!price) {
+			const priceDataPromise = await getPrice({ ticker: tickerPlain })
+			const priceData = JSON.parse(priceDataPromise.data.body)
+			setPrice(priceData.results[0].c)
+		}
+	}, [])
+
+
+    const currentValue = price * position.shares
+    const profitLoss = (price * position.shares) - (position.cost * position.shares)
     
 
     return(
@@ -13,7 +29,7 @@ const Position = ({position, isEditing, handleDeletePosition, index}) => {
             {!isEditing ?
                 <> 
                 <p id='positionName'>{position.company}</p>
-                <p id='positionPrice'>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(currentPrice)}</p>
+                <p id='positionPrice'>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(price)}</p>
                 <p id='positionQuantity'>{new Intl.NumberFormat('en-US').format(position.shares)}</p>
                 <p id='positionValue'>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(currentValue)}</p>
                 <p id='positionProportion'>{position.proportion}</p>
@@ -23,8 +39,8 @@ const Position = ({position, isEditing, handleDeletePosition, index}) => {
                 <>
                 <form className='positionEditForm'>
                     <p style={{width: '30%'}} id='positionName'>{position.company}</p>
-                    <input style={{width: '28%', marginRight: '2%'}} type="number" min="0.00" max="10000.00" step="0.01" placeholder={new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(position.cost)}/>
-                    <input style={{width: '28%', marginRight: '2%'}} type="number" min="0" max="10000" step="1" placeholder={new Intl.NumberFormat('en-US').format(position.shares)}/>
+                    <input type="number" min="0.00" max="10000.00" step="0.01" placeholder={new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(position.cost)}/>
+                    <input type="number" min="0" max="10000" step="1" placeholder={new Intl.NumberFormat('en-US').format(position.shares)}/>
                     <button id='editPositionButton' onClick={handleDeletePosition} value={index}>
                         <svg style={{pointerEvents: 'none'}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                             <path fill="none" d="M0 0h24v24H0z"/>
