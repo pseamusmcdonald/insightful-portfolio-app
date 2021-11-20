@@ -35,7 +35,7 @@ const StockSearchBox = () => {
 		<input name="company" onChange={(event) => {
 			handleInputChange(event)
 			setSelected(false)
-		}} ref={stockSearchInput} required/>
+		}} ref={stockSearchInput} placeholder="Company Name" required/>
 		{(results.length > 0 && query) ?
 			<ul className="hitsContainer">
 				{results.map((result, i) => (
