@@ -1,7 +1,7 @@
 # Insightful Stock Portfolio Application :chart_with_upwards_trend:
 A basic portfolio tracker and stock research web application built on ReactJS.
 
-Note* The current API limit is 5 calls per minute. Each position load and edit is a call. Please keep account at two positions. Working on migrating to different data provider. Guests can peruse using the following credentials.  **Username:** testUser **Password:** abcd1234!
+Note* **Username:** testUser **Password:** abcd1234!
 
 ## Features
 
