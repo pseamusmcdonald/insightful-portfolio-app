@@ -5,7 +5,6 @@ import Position from './position'
 import { useAuth } from '../../contexts/authContext'
 
 import { db } from '../misc/firebase'
-import { functions } from '../misc/firebase'
 import StockSearchBox from '../misc/stock-search-box'
 
 const AccountPositions = ({ currentAccount }) => {

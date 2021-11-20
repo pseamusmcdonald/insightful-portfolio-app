@@ -15,7 +15,7 @@ const Position = ({position, isEditing, handleDeletePosition, index}) => {
 		if (!price) {
 			const priceDataPromise = await getPrice({ ticker: tickerPlain })
 			const priceData = JSON.parse(priceDataPromise.data.body)
-			setPrice(priceData.results[0].c)
+			setPrice(priceData)
 		}
 	}, [])
 

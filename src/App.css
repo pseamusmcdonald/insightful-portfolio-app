@@ -175,7 +175,7 @@ footer {
   
   .accountOverviewContainer {
     display: flex;
-    gap: 3rem
+    gap: 1rem
   }
   
   .accountOverviewContainer > div {

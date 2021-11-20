@@ -1,21 +1,27 @@
 import React, { useEffect, useRef } from 'react'
 
 import { Chart, registerables } from 'chart.js'
+import 'chartjs-adapter-date-fns';
+
+
 
 Chart.defaults.font.family = 'DM Sans'
 
-const LineChart = ({data, labels}) => {
+const LineChart = ({data}) => {
+
+	console.log(data)
     
     const chartRef = useRef(null)
 
     useEffect(() => {
 
         const chartCtx = chartRef.current.getContext('2d')
+
+		console.log(data)
             
         const lineChart = new Chart(chartCtx, {
             type: 'line',
             data: {
-                labels: labels,
                 datasets: [{
                     label: '',
                     data: data,
@@ -53,9 +59,10 @@ const LineChart = ({data, labels}) => {
                 tension: .5,
                 scales: {
                     y: {
+						beginAtZero: false,
                         ticks: {
                             callback: function(value) {
-                                return '$' + value
+                                return Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value)
                             },
                             padding: 10,
                         },
@@ -64,6 +71,16 @@ const LineChart = ({data, labels}) => {
                         },
                     },
                     x: {
+						type: 'timeseries',
+						adapters: {
+							date: {
+							}
+						},
+						time: {
+							format: "HH:mm",
+							unit: 'minute',
+							stepSize: 30,
+						},
                         grid: {
                             display: false,
                         },
