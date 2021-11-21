@@ -10,8 +10,8 @@ Note* You can access a demo account using the following credentials **Username:*
 ### Portfolio Tool :ledger:
 - Add over 6000 companies (NASDAQ and NYSE)
 - Add/Update/Delete Positions
-- Performance Chart (1DAY/5DAY/1MONTH/1YEAR/YTD)
-- Performance Data
+- Performance Chart (1DAY working, 5DAY/1MONTH/1YEAR/YTD under dev.)
+- Performance Data (under dev.)
 
 ### Search Tool (coming soon, under dev.) :mag:
 - Data on over 6000 companies (NASDAQ and NYSE)
