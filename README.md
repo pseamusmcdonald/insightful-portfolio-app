@@ -1,11 +1,11 @@
 # Insightful Stock Portfolio Application :chart_with_upwards_trend:
 A basic portfolio tracker and stock research web application built on ReactJS.
 
+**Note*** You can access a demo account using the following credentials **Username:** test@demo.com **Password:** abcd1234!
+
 **DESKTOP ONLY, mobile under dev.**
 
 ![Preview image of insightful app](https://github.com/pseamusmcdonald/project-media/blob/main/insightful-preview.png)
-
-Note* You can access a demo account using the following credentials **Username:** testUser **Password:** abcd1234!
 
 ## Features
 
