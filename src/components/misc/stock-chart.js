@@ -6,8 +6,11 @@ import 'chartjs-adapter-date-fns';
 
 
 Chart.defaults.font.family = 'DM Sans'
+Chart.register(...registerables)
 
 const StockChart = ({data, positive}) => {
+
+	console.log(data)
     
     const chartRef = useRef(null)
 
@@ -93,14 +96,13 @@ const StockChart = ({data, positive}) => {
 				}
             }
         }) 
+		
 
         return () => {
             lineChart.destroy()
         }
 
-    })
-
-    Chart.register(...registerables)
+    }, [data])
 
 
     return (

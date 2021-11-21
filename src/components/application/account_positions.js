@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { doc, updateDoc, arrayRemove, arrayUnion } from "firebase/firestore"
 
 import Position from './position'
 import { useAuth } from '../../contexts/authContext'
@@ -7,58 +6,12 @@ import { useAuth } from '../../contexts/authContext'
 import { db } from '../misc/firebase'
 import StockSearchBox from '../misc/stock-search-box'
 
-const AccountPositions = ({ currentAccount }) => {
+const AccountPositions = ({ positions, handleAddPosition, handleDeletePosition }) => {
 
-    const { currentUser } = useAuth()
-    const [ positions, setPositions ] = useState(currentAccount.positions)
     const [ isEditing, setIsEditing ] = useState(false)
-
-    const accountRef = doc(db, `users/${currentUser.uid}/accounts`, `${currentAccount.name}`)
 
     const handlePortfolioEdit = () => {
         setIsEditing(prev => !prev)
-    }
-
-    const handleDeletePosition = async event => {
-
-        event.preventDefault()
-
-        await updateDoc(accountRef, {
-            positions: arrayRemove(positions[event.target.value])
-        })
-            .then(() => {
-                console.log('Success')
-                setPositions(prev => {
-                    const temp = prev.slice(0)
-                    temp.splice(event.target.value, 1)
-                    return temp
-                })
-            })
-    }
-
-    const handleAddPosition = async (event) => {
-
-        event.preventDefault()
-
-        const newPositionData = {
-            company: `${event.target.company.value}`,
-            cost: `${event.target.cost.value}`,
-            shares: `${event.target.shares.value}`,
-        }
-
-        await updateDoc(accountRef, {
-            positions: arrayUnion(newPositionData)
-        })
-            .then(() => {
-                setPositions(prev => {
-                    const temp = prev.slice(0)
-                    temp.push(newPositionData)
-                    return temp
-                })
-            })
-
-            var form = event.target
-            form.reset()
     }
 
     return (
@@ -86,7 +39,7 @@ const AccountPositions = ({ currentAccount }) => {
             }
             </div>
             {positions.map((position, index) => (
-                <Position key={ position.name } position={ position } isEditing={ isEditing } index={ index } handleDeletePosition={ handleDeletePosition }/>
+                <Position key={ position.name } position={ position } isEditing={ isEditing } index={ index } handleDeletePosition={handleDeletePosition}/>
             ))}
             {isEditing ?
                 <div>

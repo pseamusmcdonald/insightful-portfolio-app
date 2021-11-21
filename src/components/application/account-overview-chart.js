@@ -31,12 +31,10 @@ const AccountOverviewChart = ({positions}) => {
 
 	
 	useEffect(async () => {
-		if (!data) {
 			const chartDataPromise = await getChartData({ tickers: tickers })
 			const chartData = await JSON.parse(chartDataPromise.data.body)
 			setData(chartData)
-		}
-	})
+	}, [positions])
 
 	const today = new Date();
 	const dd = String(today.getDate()).padStart(2, '0');

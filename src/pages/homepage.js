@@ -4,6 +4,8 @@ import Layout from '../templates/layout'
 import { useAuth } from '../contexts/authContext'
 import { Redirect } from 'react-router-dom'
 
+import appPreview from '../assets/images/insightful-preview.png'
+
 const Homepage = () => {
 
     const { currentUser } = useAuth()
