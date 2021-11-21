@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { collection, getDocs } from "firebase/firestore"
+import { collection, doc, getDocs, setDoc } from "firebase/firestore"
 import { db } from '../misc/firebase'
 
 import AccountPositions from './account_positions'
@@ -7,6 +7,7 @@ import AccountDataOverview from './account_data_overview'
 import AccountOverviewChart from './account-overview-chart'
 import Loading from '../misc/loading'
 import { useAuth } from '../../contexts/authContext'
+import { set } from 'date-fns'
 
 const Dashboard = () => {
 
@@ -17,18 +18,31 @@ const Dashboard = () => {
     const [ fetching, setFetching ] = useState(true)
     const [ currentAccount, setCurrentAccount ] = useState(null)
 
-    const getData = async () => {
+    const getAccountData = async () => {
 
         let tempAccountArray = []
-
+		
         const docsSnap = await getDocs(collection(db, `users/${currentUser.uid}/accounts`))
 
         await docsSnap.forEach((doc) => {
             tempAccountArray.push(doc.data())
         })
 
-        setAccounts(tempAccountArray)
-        setFetching(false)
+		if (tempAccountArray.length > 0) {
+			setAccounts(tempAccountArray)
+			setFetching(false)
+		}
+		else {
+			const newAccountData = {
+				isDefault: true,
+				name: 'defaultAccount',
+				positions: [],
+			}
+			await setDoc(doc(db, `users/${currentUser.uid}/accounts`, "defaultAccount"), newAccountData)
+			const docsSnap = await getDocs(collection(db, `users/${currentUser.uid}/accounts`))
+			setAccounts(docsSnap)
+			setFetching(false)
+		}
 
     }
 
@@ -37,7 +51,7 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
-        if (accounts === null) getData()
+        if (accounts === null) getAccountData()
         if (currentAccount === null && accounts) setCurrentAccount(accounts[0])
     })
 
@@ -48,18 +62,15 @@ const Dashboard = () => {
             <Loading />
             :
             <>
-            <div className='accountsDropdown'>
-                <select onChange={handleAccountSelection}>
-                    {accounts.map((account) => (
-                        <option value={account.id}>{account.name}</option>
-                    ))}
-                </select>
-            </div>
+
             <div className='accountOverviewContainer'>
-                <div className='accountOverviewData'>
-                    <AccountPositions currentAccount={currentAccount}/>
-                </div>
+				{} 
+				<>
+					<div className='accountOverviewData'>
+						<AccountPositions currentAccount={currentAccount}/>
+					</div>
 					<AccountOverviewChart positions={currentAccount.positions}/>
+				</>
             </div>
             </>
         }

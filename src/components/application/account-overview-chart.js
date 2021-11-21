@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { httpsCallable } from '@firebase/functions'
 import { functions } from '../misc/firebase'
 
-import LineChart from '../misc/line_chart'
+import StockChart from '../misc/stock-chart'
+import Loading from '../misc/loading'
 
 const AccountOverviewChart = ({positions}) => {
 	
@@ -13,6 +14,11 @@ const AccountOverviewChart = ({positions}) => {
 	const getChartData = httpsCallable(functions, 'getStockChartData')
 
 	const tickers = []
+
+	let portfolioCost = 0
+	for (const pos of positions) {
+		portfolioCost += (pos.shares * pos.cost)		
+	}
 
 	positions.forEach(pos => {
 		const tickerArray = pos.company.split(" ")
@@ -29,7 +35,6 @@ const AccountOverviewChart = ({positions}) => {
 			const chartDataPromise = await getChartData({ tickers: tickers })
 			const chartData = await JSON.parse(chartDataPromise.data.body)
 			setData(chartData)
-			console.log(chartData)
 		}
 	})
 
@@ -48,12 +53,17 @@ const AccountOverviewChart = ({positions}) => {
 		<div className='accountOverviewChart'>
 			<select id='chartPeriodSelection' onChange={handleChartRangeSelection}>
 				<option value='daily'>1 Day</option>
+				{/* 
+				 // UNDER DEV
 				<option value='weekly'>5 Day</option>
 				<option value='monthly'>1 Month</option>
 				<option value='yearly'>1 Year</option>
-				<option value='ytd'>YTD</option>
+				<option value='ytd'>YTD</option> */}
 			</select>
-			<LineChart data={data} labels={labels}/>
+			{data === null &&
+				<Loading />
+			}
+			<StockChart data={data} labels={labels} positive={true}/>
 		</div>
 	)
 }

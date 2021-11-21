@@ -12,7 +12,7 @@ const Homepage = () => {
         <>
             {currentUser ? <Redirect to='/app/dashboard'/> :
                 <Layout>
-                    <h1>wdsa</h1>
+                    <h1>This is a demo for a portfolio tracker built in React. Sign up to check it out!</h1>
                 </Layout>
             }
         </>

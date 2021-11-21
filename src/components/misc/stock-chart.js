@@ -7,17 +7,13 @@ import 'chartjs-adapter-date-fns';
 
 Chart.defaults.font.family = 'DM Sans'
 
-const LineChart = ({data}) => {
-
-	console.log(data)
+const StockChart = ({data, positive}) => {
     
     const chartRef = useRef(null)
 
     useEffect(() => {
 
         const chartCtx = chartRef.current.getContext('2d')
-
-		console.log(data)
             
         const lineChart = new Chart(chartCtx, {
             type: 'line',
@@ -25,7 +21,8 @@ const LineChart = ({data}) => {
                 datasets: [{
                     label: '',
                     data: data,
-                    fill: true,
+                    fill: false,
+					borderColor: positive ? '#00AB23': '#F72F3C',
                 }]
             },
             options: {
@@ -34,6 +31,8 @@ const LineChart = ({data}) => {
                         display: false,
                     },
                     tooltip: {
+						mode: 'index',
+						intersect: false,
                         displayColors: false,
                         titleFont: {
                             size: 16,
@@ -65,6 +64,7 @@ const LineChart = ({data}) => {
                                 return Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value)
                             },
                             padding: 10,
+							display: false,
                         },
                         grid: {
                             drawBorder: false,
@@ -85,7 +85,12 @@ const LineChart = ({data}) => {
                             display: false,
                         },
                     },
-                }
+                },
+				elements: {
+					point: {
+						radius: 0,
+					}
+				}
             }
         }) 
 
@@ -103,4 +108,4 @@ const LineChart = ({data}) => {
     )
 }
 
-export default LineChart
+export default StockChart
